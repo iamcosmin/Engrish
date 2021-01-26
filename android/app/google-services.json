@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "191610015097",
+    "project_id": "relays-engrish",
+    "storage_bucket": "relays-engrish.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191610015097:android:2c89ece21361792f86f3a8",
+        "android_client_info": {
+          "package_name": "com.relays.engrish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191610015097-6o858d0o5nhc4gtqb3vg0fv829uu6oqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.relays.engrish",
+            "certificate_hash": "acf2b4f093aac1bc2989dd724e1512684597b4b1"
+          }
+        },
+        {
+          "client_id": "191610015097-iaeahbml4qnije2vsubpt4orkmtvcn72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2glTsCr3YX8jaoklR00OWgOpXoGsKI1A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191610015097-iaeahbml4qnije2vsubpt4orkmtvcn72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
