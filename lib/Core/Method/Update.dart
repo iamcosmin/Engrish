@@ -37,7 +37,7 @@ class Update extends Core {
         .toList();
   }
 
-  Future _downloadUpdate() {
+  Future _downloadUpdate() async {
     // TODO: Implement update process.
     // The update process should be composed of notifying the user that an update is available,
     // downloading the update into the downloads folder using flutter_downloader
