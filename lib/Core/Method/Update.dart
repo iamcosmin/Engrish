@@ -37,6 +37,7 @@ class Update extends Core {
         .toList();
   }
 
+  // ignore: unused_element
   Future _downloadUpdate() async {
     // TODO: Implement update process.
     // The update process should be composed of notifying the user that an update is available,
