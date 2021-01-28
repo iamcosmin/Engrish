@@ -64,7 +64,11 @@ class Update extends Core {
     var packageInfo = await PackageInfo.fromPlatform();
     var appVersionCode = int.parse(packageInfo.buildNumber);
     if (info.version < appVersionCode) {
-      await _askUserForUpdate();
+      await _askUserForUpdate(
+          ctx: ctx,
+          vName: info.versionName,
+          vCode: info.version,
+          vChangelog: info.changelog);
     } else {
       return;
     }
