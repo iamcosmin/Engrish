@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:package_info/package_info.dart';
 
 import '../Core.dart';
@@ -36,7 +37,7 @@ class Update extends Core {
         .toList();
   }
 
-  Future _askForUpdate() async {
+  Future _downloadUpdate() {
     // TODO: Implement update process.
     // The update process should be composed of notifying the user that an update is available,
     // downloading the update into the downloads folder using flutter_downloader
@@ -44,12 +45,26 @@ class Update extends Core {
     // request app install permission and install using install_plugin.
   }
 
-  Future checkForUpdates() async {
+  Future _askUserForUpdate(
+      {@required BuildContext ctx,
+      @required String vName,
+      @required int vCode,
+      @required String vChangelog}) async {
+    await showCupertinoDialog(
+        context: ctx,
+        builder: (ctx) => CupertinoAlertDialog(
+              title: Text('Actualizare disponibilă!'),
+              content: Text(
+                  'Versiunea $vName (${vCode.toString}) este disponibilă.'),
+            ));
+  }
+
+  Future checkForUpdates({@required BuildContext ctx}) async {
     var info = await _returnServerInfo();
     var packageInfo = await PackageInfo.fromPlatform();
     var appVersionCode = int.parse(packageInfo.buildNumber);
     if (info.version < appVersionCode) {
-      await _askForUpdate();
+      await _askUserForUpdate();
     } else {
       return;
     }
