@@ -21,9 +21,13 @@ jobs:
         channel: 'stable' # 'dev', 'alpha', default to: 'stable'
         # flutter-version: '1.12.x' # you can also specify exact version of flutter
     - run: flutter pub get
-    - run: flutter format --set-exit-if-changed .
+    - run: flutter format .
     - run: flutter analyze .
-    - run: flutter test
+    - run: cd android/
+    - run: echo "${{ secrets.KEYSTORE }}" > release.jks.asc
+    - run: gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > app/release.jks
+    - run: echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
+    - run: cd ..
     - run: flutter build apk --split-per-abi
     - uses: actions/upload-artifact@v1
       with: 
