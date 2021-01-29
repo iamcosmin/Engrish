@@ -25,7 +25,7 @@ jobs:
            flutter analyze .
     - name: Keystore expansion
       run: |
-           cd android/ : dddd: d
+           cd android/
            echo "${{ secrets.KEYSTORE }}" > release.jks.asc
            gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > release.jks
            echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
