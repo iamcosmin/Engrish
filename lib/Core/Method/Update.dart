@@ -37,14 +37,13 @@ class Update extends Core {
         .toList();
   }
 
-  // ignore: unused_element
-  Future _downloadUpdate() async {
-    // TODO: Implement update process.
-    // The update process should be composed of notifying the user that an update is available,
-    // downloading the update into the downloads folder using flutter_downloader
-    // (consider requesting storage permision with permission_handler),
-    // request app install permission and install using install_plugin.
-  }
+  // Future _downloadUpdate() async {
+  //   // TODO: Implement update process.
+  //   // The update process should be composed of notifying the user that an update is available,
+  //   // downloading the update into the downloads folder using flutter_downloader
+  //   // (consider requesting storage permision with permission_handler),
+  //   // request app install permission and install using install_plugin.
+  // }
 
   Future _askUserForUpdate(
       {@required BuildContext ctx,
