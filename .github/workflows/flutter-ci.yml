@@ -47,3 +47,4 @@ jobs:
       with:
         name: x86_64-release
         path: build\app\outputs\apk\release\app-x86_64-release.apk
+
