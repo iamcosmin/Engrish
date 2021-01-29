@@ -24,6 +24,7 @@ jobs:
       run: flutter format .
            flutter analyze .
     - name: Keystore expansion
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
            cd android/
            echo "${{ secrets.KEYSTORE }}" > release.jks.asc
@@ -31,20 +32,22 @@ jobs:
            echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
            cd ..
     - name: App build
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: flutter build apk --split-per-abi
-    - name: Upload arm64
+    - name: Change built names
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: |
+          cd build/app/outputs/apk/release/
+          mv app-arm64-v8a-release.apk engrish_arm64.apk
+          mv app-armeabi-v7a-release.apk engrish_arm7.apk
+          mv app-x86_64-release.apk engrish_x86.apk
+          rm -rf app-arm64-v8a-release.apk
+          rm -rf app-armeabi-v7a-release.apk
+          rm -rf app-x86_64-release.apk
+    - name: Upload release
+      if:   github.event_name == 'push' && github.ref == 'refs/heads/master'
       uses: actions/upload-artifact@v1
       with: 
-        name: arm64-v8a-release
-        path: build/app/outputs/apk/release/app-arm64-v8a-release.apk
-    - name: Upload armeabi-v7a
-      uses: actions/upload-artifact@v1
-      with:
-        name: armeabi-v7a-release
-        path: build/app/outputs/apk/release/app-armeabi-v7a-release.apk
-    - name: Upload x86-64
-      uses: actions/upload-artifact@v1
-      with:
-        name: x86_64-release
-        path: build/app/outputs/apk/release/app-x86_64-release.apk
+        name: Engrish_Release
+        path: build/app/outputs/apk/release/
 
