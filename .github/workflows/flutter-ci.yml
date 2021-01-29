@@ -27,7 +27,7 @@ jobs:
       run: |
            cd android/
            echo "${{ secrets.KEYSTORE }}" > release.jks.asc
-           gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > release.jks
+           gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > app/release.jks
            echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
            cd ..
     - name: App build
