@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Environment setup
       uses: actions/checkout@v1
-      uses: actions/setup-java@v1
+            actions/setup-java@v1
       with:
         java-version: '12.x'
       uses: subosito/flutter-action@v1
@@ -20,13 +20,13 @@ jobs:
       run: flutter pub get
     - name: Error checking
       run: flutter format .
-      run: flutter analyze .
+           flutter analyze .
     - name: Keystore expansion
       run: cd android/
-      run: echo "${{ secrets.KEYSTORE }}" > release.jks.asc
-      run: gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > release.jks
-      run: echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
-      run: cd ..
+           echo "${{ secrets.KEYSTORE }}" > release.jks.asc
+           gpg -d --passphrase "${{ secrets.PASS_PHRASE }}" --batch release.jks.asc > release.jks
+           echo "${{ secrets.KEYSTORE_PASS }}" > key.properties
+           cd ..
     - name: App build
       run: flutter build apk --split-per-abi
     - name: Assets upload
