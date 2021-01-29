@@ -16,8 +16,9 @@ class Logon extends StatelessWidget {
         backgroundColor: CupertinoColors.black,
         previousPageTitle: 'Înapoi',
         trailing: TButton(
-          onTap: () =>
-              Core.login.chktkn(token: _token, ctx: context, home: Main()),
+          onTap: () async {
+            await Core.login.chktkn(token: _token, ctx: context, home: Main());
+          },
           loader: false,
         ),
       ),
