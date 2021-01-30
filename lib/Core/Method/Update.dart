@@ -25,6 +25,12 @@ class ServerUpdater {
   }
 }
 
+// We need to have a separate update Widget in Settings.
+// We will use isUpdateAvailable() for letting the widgets know if update is available.
+// the app and checkForUpdates() when we launch the section in Settings.
+
+// Another way of showing updates will be a notification on the home screen instead of a dialog popup
+//
 class Update extends Core {
   /// Returns the rUpdate info such as changelog, latest changelog and latest version name
   Future<ServerUpdater> _returnServerInfo() async {
@@ -49,7 +55,8 @@ class Update extends Core {
       {@required BuildContext ctx,
       @required String vName,
       @required int vCode,
-      @required String vChangelog}) async {
+      @required String vChangelog,
+      @required bool isMandatory}) async {
     await showCupertinoDialog(
         context: ctx,
         builder: (ctx) => CupertinoAlertDialog(
@@ -59,18 +66,37 @@ class Update extends Core {
             ));
   }
 
+  /// Handles update checking in Settings.
   Future checkForUpdates({@required BuildContext ctx}) async {
+    var info = await _returnServerInfo();
+    var updateRequest = await isUpdateAvailable();
+
+    if (updateRequest) {
+      await _askUserForUpdate(
+          ctx: ctx,
+          isMandatory: info.mandatory,
+          vChangelog: info.changelog,
+          vCode: info.version,
+          vName: info.versionName);
+    }
+  }
+
+  /// Checks if updates are available.
+  /// Returns true if an update is available and false if an update is not available.
+  Future<bool> isUpdateAvailable() async {
     var info = await _returnServerInfo();
     var packageInfo = await PackageInfo.fromPlatform();
     var appVersionCode = int.parse(packageInfo.buildNumber);
-    if (info.version < appVersionCode) {
-      await _askUserForUpdate(
-          ctx: ctx,
-          vName: info.versionName,
-          vCode: info.version,
-          vChangelog: info.changelog);
+    if (info.version > appVersionCode) {
+      return true;
     } else {
-      return;
+      return false;
     }
+  }
+
+  /// Requests info about an update from the server. Returns an ServerUpdater object.
+  Future<ServerUpdater> requestSuplimentaryUpdateInfo() async {
+    var info = await _returnServerInfo();
+    return info;
   }
 }

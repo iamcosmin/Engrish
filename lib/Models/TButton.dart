@@ -1,7 +1,6 @@
-import 'package:engrish/Core/Core.dart';
 import 'package:flutter/cupertino.dart';
 
-class TButton extends UIKit {
+class TButton extends StatefulWidget {
   final Function onTap;
   final Duration duration = Duration(milliseconds: 50);
   final double opacity = 0.5;

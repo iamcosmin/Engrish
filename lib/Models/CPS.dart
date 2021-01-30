@@ -1,7 +1,6 @@
-import 'package:engrish/Core/Core.dart';
 import 'package:flutter/cupertino.dart';
 
-class CPS extends UIKit {
+class CPS extends StatefulWidget {
   final Widget child;
   final Color backgroundColor;
   final CupertinoNavigationBar navigationBar;

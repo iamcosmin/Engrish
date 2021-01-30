@@ -4,10 +4,10 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'Home.dart';
-import 'Settings.dart';
+import 'Settings/Settings.dart';
 import 'Tests.dart';
 
-class Main extends UIKit {
+class Main extends StatefulWidget {
   @override
   _MainState createState() => _MainState();
 }

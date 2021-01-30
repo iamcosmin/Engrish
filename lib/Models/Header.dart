@@ -1,0 +1,99 @@
+import 'package:engrish/Core/Core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+/// The first big header item in settings that aggregates the user's profile
+/// type data.
+class SettingsHeader extends StatefulWidget {
+  @override
+  _SettingsHeaderState createState() => _SettingsHeaderState();
+}
+
+class _SettingsHeaderState extends State<SettingsHeader> {
+  String name = '';
+
+  Future asyncWork() async {
+    var a = await Core.db.get.name();
+    setState(() {
+      name = a;
+    });
+  }
+
+  @override
+  void initState() {
+    asyncWork();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigator.push(
+        //   context,
+        //   CupertinoPageRoute(
+        //       builder: (BuildContext context) => AccountManager()));
+      },
+      child: SizedBox(
+        height: 81.0,
+        child: Row(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 15.0,
+                right: 13.0,
+              ),
+              child: CircleAvatar(
+                radius: 30.0,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30.0),
+                  child: Column(
+                    children: <Widget>[
+                      Center(child: Text(name.characters.first)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 2.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(padding: EdgeInsets.only(top: 16.0)),
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 21.0,
+                        fontWeight: FontWeight.w500,
+                        color:
+                            CupertinoTheme.of(context).primaryContrastingColor,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(top: 6.0)),
+                    Text(
+                      'Hint',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: CupertinoColors.inactiveGray,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Icon(
+                CupertinoIcons.forward,
+                color: CupertinoColors.inactiveGray,
+                size: 20.0,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

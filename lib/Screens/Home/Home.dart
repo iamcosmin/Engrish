@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../../Models/CPS.dart';
 
-class Home extends UIKit {
+class Home extends StatefulWidget {
   @override
   HomeScreen createState() => HomeScreen();
 }

@@ -1,6 +1,3 @@
-// Import of the separated API
-import 'package:flutter/cupertino.dart';
-
 import 'Method/Database/Database.dart';
 import 'Method/Login.dart';
 import 'Method/Misc.dart';
@@ -19,5 +16,3 @@ class Core {
   static Database db = Database();
   static Update update = Update();
 }
-
-abstract class UIKit extends StatefulWidget {}

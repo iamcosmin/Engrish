@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../../Models/CPS.dart';
 import 'Login.dart';
 
-class OOBE extends UIKit {
+class OOBE extends StatefulWidget {
   @override
   _FirstState createState() => _FirstState();
 }

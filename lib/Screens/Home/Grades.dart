@@ -2,7 +2,7 @@ import 'package:engrish/Core/Core.dart';
 import 'package:engrish/Models/CPS.dart';
 import 'package:flutter/cupertino.dart';
 
-class Grades extends UIKit {
+class Grades extends StatefulWidget {
   @override
   _GradesState createState() => _GradesState();
 }
