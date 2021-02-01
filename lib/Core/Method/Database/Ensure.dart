@@ -1,42 +1,54 @@
 import 'package:engrish/Core/Core.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+// Awaiting null safe version of the following plugin(s).
+// import 'package:firebase_analytics/firebase_analytics.dart';
+// import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Ensure extends Core {
   /// Getting all necesary info for the first time in bulk, then refreshing only on pull
   /// to refresh
   Future infoIsInit() async {
-    var pfs = await SharedPreferences.getInstance();
-    var isTestsCached = pfs.getBool('isTestsCached');
-    var isGradesCached = pfs.getBool('isGradesCached');
-    var isNameCached = pfs.getBool('isNameCached');
-    var isFreeCached = pfs.getBool('isFreeCached');
-    var isNextTestCached = pfs.getBool('isNextTestCached');
+    SharedPreferences? pfs = await SharedPreferences.getInstance();
+    // bool? isTestsCached = pfs.getBool('isTestsCached')?;
+    bool? isGradesCached = pfs.getBool('isGradesCached')?;
+    bool? isNameCached = pfs.getBool('isNameCached')?;
+    // bool? isFreeCached = pfs.getBool('isFreeCached')?;
+    // bool? isNextTestCached = pfs.getBool('isNextTestCached')?;
     var exceptions = <String>[];
 
-    var isCachedDataCorrupted = isNameCached == null ||
-        isGradesCached == null ||
+    bool? isCachedDataCorrupted = isNameCached == null ||
+        isGradesCached == null /* ||
         isTestsCached == null ||
         isNextTestCached == null ||
-        isFreeCached == null;
+        isFreeCached == null */ ;
 
     if (isCachedDataCorrupted) {
       isNameCached ?? exceptions.add('isNameCached');
       isGradesCached ?? exceptions.add('isGradesCached');
       await Core.db.exceptOnNonCached(exceptions: exceptions);
-    }
-    if (!isNameCached) {
-      var name = await Core.db.get.onlineName();
+    } else {
+      // 1. Reassign the variables to non-null ones (this will be changed when shared-preferences
+      // will be null safe)
+      bool newNullSafeIsNameCached = pfs.getBool('isNameCached');
+      bool newNullSafeIsGradesCached = pfs.getBool('isGradesCached');
+      if (!newNullSafeIsNameCached) {
+      var name = await (Core.db.get.onlineName() as Future<String>);
       await pfs.setString('name', name);
-    } else if (!isGradesCached) {
-      var intGrades = await Core.db.get.onlineGrades();
+    } else if (!newNullSafeIsGradesCached) {
+      var intGrades = await (Core.db.get.onlineGrades() as Future<List<dynamic>>);
       var strGrades = intGrades.map((e) => e.toString()).toList();
       await pfs.setStringList('grades', strGrades);
     }
+
+    }
+    
   }
 
   /// Place in OOBE. Will update every bool to false to show info is not cached
@@ -54,9 +66,9 @@ class Ensure extends Core {
   Future<bool> ensurePluginsRuntime() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
-    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-    // ignore: unused_local_variable
-    var analytics = FirebaseAnalytics();
+    // Awaiting null safe version of the following plugin(s).
+    // await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+    // var analytics = FirebaseAnalytics();
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(systemNavigationBarColor: CupertinoColors.black));
     await Core.login.setTokens();

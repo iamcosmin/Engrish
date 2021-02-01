@@ -7,7 +7,7 @@ import '../../Models/CPS.dart';
 
 // ignore: must_be_immutable
 class Logon extends StatelessWidget {
-  String _token;
+  String? _token;
 
   @override
   Widget build(BuildContext context) {

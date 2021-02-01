@@ -7,8 +7,8 @@ class TButton extends StatefulWidget {
   final bool loader;
 
   TButton({
-    @required this.onTap,
-    @required this.loader,
+    required this.onTap,
+    required this.loader,
   });
 
   @override
@@ -16,7 +16,7 @@ class TButton extends StatefulWidget {
 }
 
 class _TButtonState extends State<TButton> {
-  bool isDown;
+  late bool isDown;
 
   @override
   void initState() {

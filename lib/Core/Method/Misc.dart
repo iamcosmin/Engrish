@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Misc {
@@ -21,7 +22,7 @@ class Misc {
     return stringValue;
   }
 
-  void alert({@required BuildContext ctx}) {
+  void alert({required BuildContext ctx}) {
     showCupertinoDialog(
         context: ctx,
         builder: (ctx) => Stack(

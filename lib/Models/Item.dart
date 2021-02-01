@@ -12,27 +12,25 @@ typedef PressOperationCallback = Future<void> Function();
 
 class SettingsItem extends StatefulWidget {
   const SettingsItem(
-      {@required this.type,
-      @required this.label,
+      {required this.type,
+      required this.label,
       this.onChanged,
       this.subtitle,
       this.iconAssetLabel,
       this.value,
       this.hasDetails = false,
       this.onPress,
-      this.val})
-      : assert(label != null),
-        assert(type != null);
+      this.val});
 
   final String label;
-  final String subtitle;
-  final String iconAssetLabel;
+  final String? subtitle;
+  final String? iconAssetLabel;
   final SettingsItemType type;
-  final String value;
+  final String? value;
   final bool hasDetails;
-  final PressOperationCallback onPress;
-  final void Function(bool) onChanged;
-  final bool val;
+  final PressOperationCallback? onPress;
+  final void Function(bool)? onChanged;
+  final bool? val;
 
   @override
   State<StatefulWidget> createState() => SettingsItemState();
@@ -55,7 +53,7 @@ class SettingsItemState extends State<SettingsItem> {
           child: Container(
             height: 29.0,
             width: 29.0,
-            child: Image.network(widget.iconAssetLabel),
+            child: Image.network(widget.iconAssetLabel!),
           ),
           color: CupertinoTheme.of(context).primaryColor,
         ),
@@ -87,7 +85,7 @@ class SettingsItemState extends State<SettingsItem> {
             color: CupertinoTheme.of(context).primaryColor,
           ),
           Text(
-            widget.subtitle,
+            widget.subtitle!,
             style: TextStyle(
               fontSize: 12.0,
               letterSpacing: -0.2,
@@ -116,8 +114,8 @@ class SettingsItemState extends State<SettingsItem> {
           Container(
             padding: const EdgeInsets.only(right: 11.0),
             color: CupertinoTheme.of(context).primaryColor,
-            child:
-                CupertinoSwitch(value: widget.val, onChanged: widget.onChanged),
+            child: CupertinoSwitch(
+                value: widget.val!, onChanged: widget.onChanged),
           ),
         );
         break;
@@ -132,7 +130,7 @@ class SettingsItemState extends State<SettingsItem> {
               ),
               color: CupertinoTheme.of(context).primaryColor,
               child: Text(
-                widget.value,
+                widget.value!,
                 style: TextStyle(
                     color: CupertinoColors.inactiveGray, fontSize: 15.0),
               ),
@@ -164,7 +162,7 @@ class SettingsItemState extends State<SettingsItem> {
 
         rowChildren.add(
           Row(
-            children: rightRowChildren,
+            children: rightRowChildren as List<Widget>,
           ),
         );
         break;
@@ -179,7 +177,7 @@ class SettingsItemState extends State<SettingsItem> {
             setState(() {
               pressed = true;
             });
-            widget.onPress().whenComplete(() {
+            widget.onPress!().whenComplete(() {
               Future.delayed(
                 Duration(milliseconds: 150),
                 () {

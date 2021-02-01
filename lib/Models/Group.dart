@@ -6,12 +6,11 @@ class SettingsGroup extends StatelessWidget {
     this.items, {
     this.header,
     this.footer,
-  }) : assert(items != null);
+  });
 
   final List<Widget> items;
-
-  final Widget header;
-  final Widget footer;
+  final Widget? header;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +113,7 @@ class SettingsGroup extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: columnChildren,
+        children: columnChildren as List<Widget>,
       ),
     );
   }

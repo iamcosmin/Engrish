@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 
 class CPS extends StatefulWidget {
   final Widget child;
-  final Color backgroundColor;
-  final CupertinoNavigationBar navigationBar;
-  final bool resizeToAvoidBottomInset;
+  final Color? backgroundColor;
+  final CupertinoNavigationBar? navigationBar;
+  final bool? resizeToAvoidBottomInset;
 
   CPS(
-      {@required this.child,
+      {required this.child,
       this.backgroundColor,
       this.navigationBar,
       this.resizeToAvoidBottomInset});

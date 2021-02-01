@@ -1,6 +1,6 @@
 import 'package:engrish/Core/Core.dart';
 import 'package:engrish/Core/Method/Database/Get.dart';
-import 'package:flutter/cupertino.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Ensure.dart';
@@ -12,7 +12,7 @@ class Database extends Core {
   //* Exception methods
 
   /// Critical exception if somehow the user bypasses the OOBE and the info is not cached
-  Future exceptOnNonCached({/*required*/ @required List<String> exceptions}) async {
+  Future exceptOnNonCached({required List<String> exceptions}) async {
     var pfs = await SharedPreferences.getInstance();
     for (var exception in exceptions) {
       await pfs.setBool(exception, false);
@@ -34,6 +34,6 @@ class Database extends Core {
     List newGrades = await get.grades();
     var newStrGrades = newGrades.map((_) => _.toString()).toList();
     await pfs.setStringList('grades', newStrGrades);
-    return newGrades;
+    return newGrades as Future<List<String>>;
   }
 }

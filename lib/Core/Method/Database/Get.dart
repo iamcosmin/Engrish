@@ -1,6 +1,8 @@
 import 'package:engrish/Core/Core.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// Awaiting null safe version of the following plugin(s).
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Get extends Core {
   //* Token operations
@@ -49,16 +51,16 @@ class Get extends Core {
   //* Fetching internet elements
 
   /// Gets the user name String
-  Future<String> onlineName() async {
+  Future<String?> onlineName() async {
     var path = await userDatabasePath();
-    var name = path['name'] as String;
+    var name = path['name'] as String?;
     return name;
   }
 
   /// Gets a list of grades of the user
-  Future<List> onlineGrades() async {
+  Future<List?> onlineGrades() async {
     var path = await userDatabasePath();
-    var grades = path['grades'] as List;
+    var grades = path['grades'] as List?;
     return grades;
   }
 }

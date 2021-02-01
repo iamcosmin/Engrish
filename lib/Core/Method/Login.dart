@@ -1,5 +1,6 @@
 import 'package:engrish/Core/Core.dart';
 import 'package:flutter/cupertino.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends Core {
@@ -7,9 +8,9 @@ class Login extends Core {
   /// list of predefined tokens. This method is not secure if exposed to a VCS or
   /// if the app is not obfuscated.
   Future chktkn(
-      {@required String token,
-      @required BuildContext ctx,
-      @required Widget home}) async {
+      {required String? token,
+      required BuildContext ctx,
+      required Widget home}) async {
     var preferences = await SharedPreferences.getInstance();
     var tokens = preferences.getStringList('tokens');
     if (!tokens.contains(token)) {
@@ -28,7 +29,7 @@ class Login extends Core {
               ));
     } else {
       await preferences
-          .setString('token', token)
+          .setString('token', token!)
           .then((_) => Core.navigate.back(ctx: ctx, repeats: 1))
           .then((_) => Future.delayed(Duration.zero,
               () => Core.navigate.replace(ctx: ctx, route: home)));
@@ -64,8 +65,8 @@ class Login extends Core {
 
   /// This resets the session, navigating to the token entry screen.
   Future resetSession({
-    @required BuildContext ctx,
-    @required Widget tEntryScreen,
+    required BuildContext ctx,
+    required Widget tEntryScreen,
   }) async {
     var prefs = await SharedPreferences.getInstance();
     await prefs.remove('token').then(
