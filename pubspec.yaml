@@ -12,15 +12,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.2
   device_info: ^2.0.0-nullsafety.2
-  firebase_core: ^0.8.0-nullsafety.1
+  firebase_core: ^0.8.0-1.0.nullsafety.1
   # Abandoning the following plugins because they aren't null safe and they generate errors.
   # Please change the following lines to a null safe version, uncomment then run pub get.
-  # firebase_crashlytics: ^0.5.0-1.0.nullsafety.1
-  # firebase_messaging: ^7.0.3
   # firebase_analytics: ^7.0.1
-  # cloud_firestore: ^0.16.0
+  firebase_crashlytics: ^0.5.0-1.0.nullsafety.2
+  firebase_messaging: ^9.0.0-1.0.nullsafety.0
+  cloud_firestore: ^0.17.0-1.0.nullsafety.0
   fluentui_system_icons: ^1.1.92
   flutter_downloader: ^1.5.2
   install_plugin: ^2.0.1

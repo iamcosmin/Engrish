@@ -2,7 +2,7 @@ import 'package:engrish/Core/Core.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:shared_preferences/shared_preferences.dart';
 // Awaiting null safe version of the following plugin(s).
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Get extends Core {
   //* Token operations

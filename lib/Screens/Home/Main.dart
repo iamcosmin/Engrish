@@ -1,5 +1,7 @@
 import 'package:engrish/Core/Core.dart';
 import 'package:engrish/Screens/Home/Grades.dart';
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -52,16 +54,12 @@ class _MainState extends State<Main> {
             switch (index) {
               case 0:
                 return Home();
-                break;
               case 1:
                 return Tests();
-                break;
               case 2:
                 return Grades();
-                break;
               case 3:
                 return Settings();
-                break;
               default:
                 return Container();
             }
