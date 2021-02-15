@@ -11,14 +11,6 @@ class Database extends Core {
 
   //* Exception methods
 
-  /// Critical exception if somehow the user bypasses the OOBE and the info is not cached
-  Future exceptOnNonCached({required List<String> exceptions}) async {
-    var pfs = await SharedPreferences.getInstance();
-    for (var exception in exceptions) {
-      await pfs.setBool(exception, false);
-    }
-  }
-
   //* Refresh action
   /// Retreives the new name from the server and updates the cache.
   Future<String> refreshName() async {

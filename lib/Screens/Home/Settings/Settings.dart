@@ -56,7 +56,7 @@ class _SettingsState extends State<Settings> {
                             'https://developer.apple.com/design/human-interface-guidelines/ios/images/icons/app_icons/Settings.png',
                         type: SettingsItemType.modal,
                         hasDetails: true,
-                        // onPress: () => 
+                        // onPress: () =>
                         //   // Navigator.push(
                         //   //     context,
                         //   //     CupertinoPageRoute(

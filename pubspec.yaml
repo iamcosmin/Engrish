@@ -7,7 +7,7 @@ publish_to: 'none'
 version: 0.5.5+15
 
 environment:
-  sdk: '>=2.12.0-0 <3.0.0'
+  sdk: '>=2.12.0-259.0.dev <3.0.0'
 
 dependencies:
   flutter:
@@ -15,18 +15,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_info: ^2.0.0-nullsafety.2
   firebase_core: ^0.8.0-1.0.nullsafety.1
-  # Abandoning the following plugins because they aren't null safe and they generate errors.
-  # Please change the following lines to a null safe version, uncomment then run pub get.
-  # firebase_analytics: ^7.0.1
+  firebase_analytics: ^7.0.1 # ! Non Null safe
   firebase_crashlytics: ^0.5.0-1.0.nullsafety.2
   firebase_messaging: ^9.0.0-1.0.nullsafety.0
   cloud_firestore: ^0.17.0-1.0.nullsafety.0
-  fluentui_system_icons: ^1.1.92
-  flutter_downloader: ^1.5.2
-  install_plugin: ^2.0.1
-  package_info: ">=0.4.3+2 <2.0.0"
+  fluentui_system_icons: ^1.1.92 # ! Non Null safe
+  flutter_downloader: ^1.5.2 # ! Non Null safe
+  install_plugin: ^2.0.1 # ! Non Null safe
+  package_info: 0.5.0-nullsafety
   pedantic: ^1.10.0-nullsafety.3
-  shared_preferences: ">=0.5.12+4 <2.0.0"
+  shared_preferences: 2.0.0-nullsafety
   http: ^0.13.0-nullsafety.0
 
 dev_dependencies:
